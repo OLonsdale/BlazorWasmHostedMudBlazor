@@ -1,0 +1,81 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudPopoverProvider/>
+
+<MudLayout>
+    
+    <MudAppBar Elevation="1">
+
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer"/>
+
+        
+        <MudHidden Breakpoint="Breakpoint.SmAndDown">
+            <MudImage Src="/logo.png" Height="50" Class="mr-2"/>
+        </MudHidden>
+
+        <MudHidden Breakpoint="Breakpoint.MdAndDown">
+            <MudText Typo="Typo.h6">@AppState.AppBarName</MudText>
+        </MudHidden>
+        
+        <MudSpacer/>
+        <SectionOutlet SectionName="title-content"/>
+        <MudSpacer/>
+
+        <MudIconButton Icon="@Icons.Material.Filled.Refresh" Style="color: white;" OnClick="RefreshPage"/>
+
+    </MudAppBar>
+
+
+    <MudDrawer @bind-Open="@sidebarOpen" ClipMode="DrawerClipMode.Docked" Elevation="1" Variant="@DrawerVariant.Responsive">
+        <SidebarContent/>
+    </MudDrawer>
+
+    <MudMainContent>
+        <MudContainer>
+            @if (stateLoaded)
+            {
+                @Body
+            }
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+@code {
+
+    bool sidebarOpen = true;
+    bool stateLoaded = false;
+
+    void ToggleDrawer()
+    {
+        sidebarOpen = !sidebarOpen;
+    }
+    
+    protected override void OnInitialized()
+    {
+        //might need to load external stuff here
+        stateLoaded = true;
+        StateChanged();
+    }
+
+    void StateChanged()
+    {
+        StateHasChanged();
+    }
+    
+    void RefreshPage()
+    {
+        var uri = Nav.Uri;
+        Nav.NavigateTo("/no-url", false, true);
+        Nav.NavigateTo(uri, false, true);
+    }
+
+}

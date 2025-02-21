@@ -1,0 +1,23 @@
+﻿<SectionContent SectionName="title-content">
+    <MudHidden Breakpoint="Breakpoint.MdAndDown">
+        @if (!string.IsNullOrWhiteSpace(Icon))
+        {
+            <MudIcon Class="mr-2" Icon="@Icon"/>
+        }
+    </MudHidden>
+    <MudText Typo="Typo.h6">@Text</MudText>
+</SectionContent>
+
+<PageTitle>
+    @Text
+</PageTitle>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public required string Text { get; set; } = "";
+
+    [Parameter]
+    public string? Icon { get; set; }
+
+}

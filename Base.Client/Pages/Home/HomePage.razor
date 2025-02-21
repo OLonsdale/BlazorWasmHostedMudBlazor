@@ -1,0 +1,17 @@
+@attribute [Route(ClientRoutes.Home)]
+
+<TitleContent Text="Home" Icon="@Icons.Material.Filled.Home"/>
+
+Well, the page is loading. Is the API working? <br/><br/>
+
+<MudButton OnClick="MakeRequest">Make Request</MudButton>
+
+@code {
+
+    async Task MakeRequest()
+    {
+        var res = await DataService.GetTestMessage();
+        Snackbar.Add(res, res == "Error" ? Severity.Error : Severity.Success);
+    }
+
+}

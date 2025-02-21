@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Components.WebAssembly.Http
+@using Microsoft.AspNetCore.Components.Sections
+@using Microsoft.AspNetCore.Authorization
+@using System.Net.Http
+@using System.Net.Http.Json
+@using Microsoft.JSInterop
+@using System.Security.Claims
+
+@using Base.Client
+@using Base.Client.Layout
+@using Base.Client.Services
+
+@using Base.Shared.Models
+@using Base.Shared.Statics
+@using Base.Shared.Extensions
+
+@using MudBlazor
+@using Blazored.LocalStorage
+
+@inject DataService DataService
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+@inject NavigationManager Nav
+@inject AppState AppState
+@inject IJSRuntime JsRuntime
+@inject ILocalStorageService LocalStorage
+
